@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-2.1.xsd">
+
+    <service verb="create" noun="TheForm">
+        <in-parameters>
+            <parameter name="firstName" required="true"/>
+            <parameter name="lastName" required="true"/>
+            <parameter name="emailAddress" required="true">
+                <text-email message="Please enter a valid email"/>
+            </parameter>
+            <parameter name="contactNumber">
+                <matches regexp="^\d\d[-\. \d]*\d\d$" message="Please enter a valid phone number"/>
+            </parameter>
+            <parameter name="address1" required="true"/>
+            <parameter name="address2"/>
+            <parameter name="city" required="true"/>
+            <parameter name="stateProvinceGeoId" required="true"/>
+            <parameter name="postalCode" required="true"/>
+            <!-- <parameter name="amount" required="true"/>
+            <parameter name="creditCard" required="true"/>
+            <parameter name="effectiveDate" required="true"></parameter>
+            <parameter name="cardSecurityCode" required="true"/> -->
+        </in-parameters>
+
+        <out-parameters>
+        </out-parameters>
+
+        <actions>
+            <service-call name="mantle.party.PartyServices.create#Person" in-map="context" out-map="context"/>
+            <service-call name="mantle.party.ContactServices.store#PartyContactInfo" in-map="context" out-map="context"/>
+
+            <!-- <service-call name="mantle.account.PaymentServices.create#Payment" in-map="context" out-map="context"/> -->
+
+
+
+            <!-- <set field="paymentGatewayConfigId" value="TEST_APPROVE"/>
+            <service-call name="mantle.account.PaymentServices.authorize#Payment" in-map="context" out-map="context"/>
+            <service-call name="mantle.account.PaymentServices.capture#Payment" in-map="context" out-map="context"/> -->
+            <!-- <service-call name="TheService.hit#Stripe" in-map="context"/> -->
+        </actions>
+    </service>
+
+    <!-- <service verb="hit" noun="Stripe" type="java" location="com.mk.moqui.Stripe" method="hitStripe" authenticate="anonymous-all">
+        <in-parameters>
+            
+        </in-parameters>
+
+        <out-parameters>
+        </out-parameters>
+
+        <actions>
+            <service-call name="" in-map="context" out-map="context"/>
+        </actions>
+    </service> -->
+</services>
