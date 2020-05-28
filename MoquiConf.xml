@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/moqui-conf-2.1.xsd">
     <screen-facade>
         <screen location="component://webroot/screen/webroot/apps.xml">
-            <subscreens-item name="TheComponent" menu-title="The Title" menu-index="2" location="component://TheComponent/screen/TheScreen.xml" menu-include="Y"/>
+            <subscreens-item name="TheComponent" menu-title="The Title" menu-index="2" location="component://TheComponent/screen/TheScreen.xml" menu-include="true"/>
         </screen>
     </screen-facade>
 </moqui-conf>
